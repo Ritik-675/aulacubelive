@@ -78,20 +78,24 @@ const Comment = () => {
   return (
     <div>
       <div className="comment-box">
-        <p className="head-text">What's in your mind?</p>
+        <p className="head-text">What's on your mind?</p>
         <input 
           type="text" 
-          placeholder="...enter text" 
+          placeholder="...Enter text" 
           className="comment-input" 
           value={newCommentText} 
           onChange={(e) => setNewCommentText(e.target.value)} 
         />
         <button className="post-button" onClick={handlePostComment}>POST</button>
       </div>
-
-      <div>
-        <button onClick={sortByLatest}>Sort by Latest</button>
-        <button onClick={sortByMostReplies}>Sort by Most Replies</button>
+      <div className="divider"><hr /></div>
+      <div className='sort-headline'>
+        <div className="reply-text">Replies</div>
+        <div className="sort-text">According to:</div>
+        <div className="btns">
+          <button onClick={sortByLatest} className='btn1'>Sort by Latest</button>
+          <button onClick={sortByMostReplies} className='btn2'>Sort by Most Replies</button>
+        </div>
       </div>
       
       {comments.map(comment => (

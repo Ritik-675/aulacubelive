@@ -3,16 +3,24 @@
 /* Container styles */
 .comment-box {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  flex-basis: auto;
+  margin: auto;
 }
 
 .head-text {
+  display: flex;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  align-self: flex-start;
 }
 
 .comment-input {
-  width: 100%;
+  width: 97%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -21,15 +29,21 @@
 
 .post-button {
   padding: 10px 20px;
-  background-color: #4CAF50; /* Green */
-  color: #fff;
+  background-color: #81a1d3; /* Green */
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 10vw;
+  text-align: center;
+  align-self: flex-end;
+  margin-right: 1px;
+  vertical-align: auto;
+  border: 2px solid #4e78ba;
 }
 
 .post-button:hover {
-  background-color: #45a049; /* Darker green */
+  background-color: #4e78ba; /* Darker green */
 }
 
 .comment-container {
@@ -107,4 +121,28 @@
   border-radius: 5px;
   margin-top: 10px;
   border: 1px solid #ccc;
+}
+
+.sort-headline{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 10%  auto; */
+  width: 60%;
+  margin: auto;
+}
+.reply-text{
+  align-self: self-start;
+}
+.sort-text{
+  position: relative;
+  left: 28%;
+  margin: auto;
+}
+.btns{
+  display: flex;
+  /* margin: ; */
+}
+.btn1 {
+  margin-right: 5px;
 }
