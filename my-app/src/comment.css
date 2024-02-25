@@ -1,0 +1,100 @@
+/* comment.css */
+
+.comment-box {
+    margin-bottom: 20px;
+  }
+  
+  .head-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .comment-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .post-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .post-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .comment-container {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .star-icon {
+    margin-left: auto;
+    font-size: 20px;
+    cursor: pointer;
+    color: grey; /* Default star color */
+  }
+  
+  .starred {
+    color: yellow; /* Star color when starred */
+  }
+  
+  .reply-input {
+    width: calc(100% - 50px);
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .reply-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .reply-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .reply {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 20px;
+  }
+  
+  .reply-level-1 {
+    margin-left: 40px; /* Increase indentation for level 1 replies */
+  }
+  
+  .reply-level-2 {
+    margin-left: 60px; /* Increase indentation for level 2 replies */
+  }
+  
+  .reply-level-3 {
+    margin-left: 80px; /* Increase indentation for level 3 replies */
+  }
+  

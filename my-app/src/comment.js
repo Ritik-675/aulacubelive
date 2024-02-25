@@ -1,0 +1,125 @@
+import React, { useState } from 'react';
+import './comment.css'; // Import the CSS file
+
+const Comment = () => {
+  const [comments, setComments] = useState([]);
+  const [newCommentText, setNewCommentText] = useState('');
+
+  const handlePostComment = () => {
+    const newComment = {
+      id: comments.length + 1,
+      text: newCommentText,
+      replies: [],
+      timestamp: new Date().toISOString(),
+      starred: false
+    };
+    setComments([...comments, newComment]);
+    setNewCommentText('');
+  };
+
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = comments.filter(comment => comment.id !== commentId);
+    setComments(updatedComments);
+  };
+
+  const handleReplyToComment = (commentId, replyText) => {
+    const updatedComments = comments.map(comment => {
+      if (comment.id === commentId) {
+        return {
+          ...comment,
+          replies: [
+            ...comment.replies,
+            {
+              id: comment.replies.length + 1,
+              text: replyText,
+              timestamp: new Date().toISOString()
+            }
+          ]
+        };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+  };
+
+  const handleDeleteReply = (commentId, replyId) => {
+    const updatedComments = comments.map(comment => {
+      if (comment.id === commentId) {
+        const updatedReplies = comment.replies.filter(reply => reply.id !== replyId);
+        return { ...comment, replies: updatedReplies };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+  };
+
+  const handleToggleStar = (commentId) => {
+    const updatedComments = comments.map(comment => {
+      if (comment.id === commentId) {
+        return { ...comment, starred: !comment.starred };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+  };
+
+  const sortByLatest = () => {
+    const sortedComments = [...comments].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    setComments(sortedComments);
+  };
+
+  const sortByMostReplies = () => {
+    const sortedComments = [...comments].sort((a, b) => b.replies.length - a.replies.length);
+    setComments(sortedComments);
+  };
+
+  return (
+    <div>
+      <div className="comment-box">
+        <p className="head-text">What's in your mind?</p>
+        <input 
+          type="text" 
+          placeholder="...enter text" 
+          className="comment-input" 
+          value={newCommentText} 
+          onChange={(e) => setNewCommentText(e.target.value)} 
+        />
+        <button className="post-button" onClick={handlePostComment}>POST</button>
+      </div>
+
+      <div>
+        <button onClick={sortByLatest}>Sort by Latest</button>
+        <button onClick={sortByMostReplies}>Sort by Most Replies</button>
+      </div>
+      
+      {comments.map(comment => (
+        <div key={comment.id}>
+          <p>{comment.text}</p>
+          <p>{comment.timestamp}</p> {/* Displaying timestamp */}
+          <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+          
+          {/* Star icon */}
+          <span 
+            className={`star-icon ${comment.starred ? 'starred' : ''}`} 
+            onClick={() => handleToggleStar(comment.id)}
+          >
+            &#9733;
+          </span>
+          
+          <input type="text" placeholder="Reply" />
+          <button onClick={() => handleReplyToComment(comment.id)}>Reply</button>
+          
+          {comment.replies.map(reply => (
+            <div key={reply.id} className="reply">
+              <p>{reply.text}</p>
+              <p>{reply.timestamp}</p> {/* Displaying timestamp */}
+              <button onClick={() => handleDeleteReply(comment.id, reply.id)}>Delete Reply</button>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Comment;
