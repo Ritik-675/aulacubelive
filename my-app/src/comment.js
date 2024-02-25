@@ -4,6 +4,7 @@ import './comment.css'; // Import the CSS file
 const Comment = () => {
   const [comments, setComments] = useState([]);
   const [newCommentText, setNewCommentText] = useState('');
+  const [replyText, setReplyText] = useState(''); // State to store reply text
 
   const handlePostComment = () => {
     const newComment = {
@@ -22,7 +23,7 @@ const Comment = () => {
     setComments(updatedComments);
   };
 
-  const handleReplyToComment = (commentId, replyText) => {
+  const handleReplyToComment = (commentId) => {
     const updatedComments = comments.map(comment => {
       if (comment.id === commentId) {
         return {
@@ -31,7 +32,7 @@ const Comment = () => {
             ...comment.replies,
             {
               id: comment.replies.length + 1,
-              text: replyText,
+              text: replyText, // Use replyText from state
               timestamp: new Date().toISOString()
             }
           ]
@@ -40,6 +41,7 @@ const Comment = () => {
       return comment;
     });
     setComments(updatedComments);
+    setReplyText(''); // Clear reply text after replying
   };
 
   const handleDeleteReply = (commentId, replyId) => {
@@ -106,7 +108,15 @@ const Comment = () => {
             &#9733;
           </span>
           
-          <input type="text" placeholder="Reply" />
+          {/* Input box for reply */}
+          <input 
+            type="text" 
+            placeholder="Reply" 
+            value={replyText} 
+            onChange={(e) => setReplyText(e.target.value)} 
+          />
+          
+          {/* Reply button */}
           <button onClick={() => handleReplyToComment(comment.id)}>Reply</button>
           
           {comment.replies.map(reply => (
